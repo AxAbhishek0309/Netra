@@ -1,4 +1,4 @@
-# AIStack — AI Tools & Pricing Explorer
+# Netra — AI Tools & Pricing Explorer
 
 A modern directory to discover, compare, and stay updated on the best AI tools available. Built with Next.js 16, Tailwind CSS v4, and a premium black + gold design system.
 

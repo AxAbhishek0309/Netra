@@ -22,12 +22,12 @@ export async function generateMetadata({ params }: ToolDetailsPageProps) {
   
   if (!tool) {
     return {
-      title: "Tool Not Found - AIStack",
+      title: "Tool Not Found - Netra",
     }
   }
 
   return {
-    title: `${tool.name} Pricing & Features - AIStack`,
+    title: `${tool.name} Pricing & Features - Netra`,
     description: tool.description,
   }
 }

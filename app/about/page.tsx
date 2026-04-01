@@ -56,7 +56,7 @@ export default function AboutPage() {
                 <span className="text-gold-gradient">accessible</span> to everyone
               </h1>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                AIStack was founded with a simple mission: help people discover, compare, and choose the right AI tools without the confusion of scattered information and hidden pricing.
+                Netra was founded with a simple mission: help people discover, compare, and choose the right AI tools without the confusion of scattered information and hidden pricing.
               </p>
             </div>
           </div>
@@ -102,10 +102,10 @@ export default function AboutPage() {
                     The AI tool landscape is evolving rapidly. New tools emerge daily, pricing changes frequently, and finding reliable comparisons is nearly impossible.
                   </p>
                   <p>
-                    We built AIStack to solve this problem. Our platform aggregates information from hundreds of AI tools, standardizes their features and pricing, and presents everything in a clear, comparable format.
+                    We built Netra to solve this problem. Our platform aggregates information from hundreds of AI tools, standardizes their features and pricing, and presents everything in a clear, comparable format.
                   </p>
                   <p>
-                    Whether you&apos;re a solo creator looking for an image generator or an enterprise team evaluating NLP solutions, AIStack helps you make informed decisions.
+                    Whether you&apos;re a solo creator looking for an image generator or an enterprise team evaluating NLP solutions, Netra helps you make informed decisions.
                   </p>
                 </div>
               </div>
@@ -143,7 +143,7 @@ export default function AboutPage() {
                 What We Stand For
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                These principles guide everything we do at AIStack.
+                These principles guide everything we do at Netra.
               </p>
             </div>
 
@@ -188,12 +188,12 @@ export default function AboutPage() {
                     <Sparkles className="w-5 h-5 text-primary" />
                   </div>
                   <p className="text-sm text-muted-foreground leading-relaxed italic mb-5">
-                    &ldquo;AIStack was built out of frustration — I spent hours comparing AI tools scattered across the web. I wanted one place that just works. That&apos;s what we built.&rdquo;
+                    &ldquo;Netra was built out of frustration — I spent hours comparing AI tools scattered across the web. I wanted one place that just works. That&apos;s what we built.&rdquo;
                   </p>
                 </div>
                 <div className="pt-4 border-t border-border/20">
                   <p className="text-sm font-bold text-foreground">Abhishek Tiwari</p>
-                  <p className="text-xs text-primary mt-0.5">Founder & CEO, AIStack</p>
+                  <p className="text-xs text-primary mt-0.5">Founder & CEO, Netra</p>
                 </div>
               </div>
             </div>

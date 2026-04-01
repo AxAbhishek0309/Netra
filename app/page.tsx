@@ -183,7 +183,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl lg:text-5xl font-black text-foreground mb-5 tracking-tight">
-              Why Choose <span className="text-gold-gradient">AIStack</span>
+              Why Choose <span className="text-gold-gradient">Netra</span>
             </h2>
             <p className="text-muted-foreground text-lg leading-relaxed">
               We make it easy to find, compare, and choose the right AI tools for your needs.
@@ -230,7 +230,7 @@ export default function HomePage() {
                   Ready to find the perfect AI tool?
                 </h2>
                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-10">
-                  Join thousands of professionals who use AIStack to discover and compare AI tools.
+                  Join thousands of professionals who use Netra to discover and compare AI tools.
                 </p>
                 <Link
                   href="/tools"

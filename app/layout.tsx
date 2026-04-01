@@ -14,7 +14,7 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'AIStack - Discover & Compare AI Tools',
+  title: 'Netra - Discover & Compare AI Tools',
   description: 'Explore the best AI tools and their pricing in one place. Compare features, plans, and make informed decisions.',
   keywords: ['AI tools', 'AI pricing', 'compare AI', 'machine learning', 'AI comparison'],
 }

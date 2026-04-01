@@ -34,7 +34,7 @@ export function Footer() {
                 <div className="absolute inset-0 blur-lg bg-primary/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <Sparkles className="relative h-6 w-6 text-primary transition-transform duration-300 group-hover:rotate-12" />
               </div>
-              <span className="text-xl font-bold text-gold-gradient">AIStack</span>
+              <span className="text-xl font-bold text-gold-gradient">Netra</span>
             </Link>
             <p className="mt-5 text-sm text-muted-foreground leading-relaxed max-w-xs">
               Discover and compare the best AI tools. Make informed decisions with comprehensive pricing and feature comparisons.
@@ -115,7 +115,7 @@ export function Footer() {
         <div className="mt-16 pt-8 border-t border-border/20">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <p className="text-sm text-muted-foreground">
-              &copy; {new Date().getFullYear()} AIStack. All rights reserved.
+              &copy; {new Date().getFullYear()} Netra. All rights reserved.
             </p>
             <div className="flex items-center gap-4">
               {/* Social links with premium hover effects */}

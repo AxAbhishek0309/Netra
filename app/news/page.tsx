@@ -5,7 +5,7 @@ import { fetchAINews } from "@/lib/news"
 import { NewsGrid } from "@/app/news/news-grid"
 
 export const metadata = {
-  title: "AI News - AIStack",
+  title: "AI News - Netra",
   description: "Stay updated with the latest developments in artificial intelligence.",
 }
 

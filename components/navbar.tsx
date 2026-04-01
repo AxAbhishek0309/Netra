@@ -43,7 +43,7 @@ export function Navbar() {
               <Sparkles className="relative h-7 w-7 text-primary transition-all duration-300 group-hover:scale-110 group-hover:rotate-12" />
             </div>
             <span className="text-xl font-bold tracking-tight text-gold-gradient">
-              AIStack
+              Netra
             </span>
           </Link>
 

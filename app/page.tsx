@@ -3,7 +3,9 @@ import { ArrowRight, Sparkles, Zap, Shield, BarChart3, Star, TrendingUp } from "
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { ToolCard } from "@/components/tool-card"
+import { TextFlippingBoardDemo } from "@/components/text-flipping-board-demo"
 import { getFeaturedTools } from "@/lib/data"
+import { cn } from "@/lib/utils"
 
 const features = [
   {
@@ -39,57 +41,74 @@ export default function HomePage() {
   const featuredTools = getFeaturedTools()
 
   return (
-    <div className="min-h-screen bg-background noise-overlay">
+    <div className="min-h-screen bg-background noise-overlay relative">
+      {/* Full-page Aceternity grid */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className={cn(
+          "absolute inset-0",
+          "[background-size:40px_40px]",
+          "[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)]"
+        )} />
+        {/* Radial fade so center content stays clean */}
+        <div className="absolute inset-0 bg-background [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,transparent_40%,black_100%)]" />
+      </div>
       <Navbar />
       
       {/* Hero Section */}
       <section className="relative pt-36 pb-24 lg:pt-44 lg:pb-36 overflow-hidden">
-        {/* Premium background effects */}
+        {/* Hero background glows */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Primary glow */}
           <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-primary/8 rounded-full blur-[120px] animate-float" />
-          {/* Secondary glow */}
           <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] animate-float" style={{ animationDelay: '2s' }} />
-          {/* Grid pattern */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,215,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,215,0,0.02)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,black_70%,transparent_110%)]" />
         </div>
         
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-4xl mx-auto">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-sm mb-8 animate-fade-in-up">
-              <Sparkles className="w-4 h-4 text-primary animate-pulse" />
-              <span className="text-sm font-semibold text-primary tracking-wide">The #1 AI Tools Directory</span>
+          {/* Two-column hero layout */}
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+
+            {/* Left — text content */}
+            <div className="flex-1 text-center lg:text-left">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-sm mb-8 animate-fade-in-up">
+                <Sparkles className="w-4 h-4 text-primary animate-pulse" />
+                <span className="text-sm font-semibold text-primary tracking-wide">The #1 AI Tools Directory</span>
+              </div>
+
+              {/* Heading */}
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-8 animate-fade-in-up animate-delay-100">
+                <span className="text-foreground">Discover &amp; Compare</span>
+                <br />
+                <span className="text-gold-gradient-animated text-shadow-gold">AI Tools</span>
+              </h1>
+
+              {/* Subtext */}
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-12 leading-relaxed animate-fade-in-up animate-delay-200">
+                Explore the best AI tools and their pricing in one place. Make informed decisions with comprehensive feature comparisons.
+              </p>
+
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 animate-fade-in-up animate-delay-300">
+                <Link
+                  href="/tools"
+                  className="group inline-flex items-center gap-2.5 px-8 py-4 text-base font-bold rounded-full bg-gold-gradient text-primary-foreground btn-gold shadow-xl shadow-primary/20"
+                >
+                  Explore Tools
+                  <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+                <Link
+                  href="/compare"
+                  className="inline-flex items-center gap-2.5 px-8 py-4 text-base font-semibold rounded-full border-2 border-border bg-card/30 backdrop-blur-sm text-foreground transition-all duration-300 hover:bg-card hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5"
+                >
+                  Compare Tools
+                </Link>
+              </div>
             </div>
-            
-            {/* Heading */}
-            <h1 className="text-5xl sm:text-6xl lg:text-8xl font-black tracking-tight mb-8 animate-fade-in-up animate-delay-100">
-              <span className="text-foreground">Discover & Compare</span>
-              <br />
-              <span className="text-gold-gradient-animated text-shadow-gold">AI Tools</span>
-            </h1>
-            
-            {/* Subtext */}
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in-up animate-delay-200">
-              Explore the best AI tools and their pricing in one place. Make informed decisions with comprehensive feature comparisons.
-            </p>
-            
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animate-delay-300">
-              <Link
-                href="/tools"
-                className="group inline-flex items-center gap-2.5 px-8 py-4 text-base font-bold rounded-full bg-gold-gradient text-primary-foreground btn-gold shadow-xl shadow-primary/20"
-              >
-                Explore Tools
-                <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-              <Link
-                href="/compare"
-                className="inline-flex items-center gap-2.5 px-8 py-4 text-base font-semibold rounded-full border-2 border-border bg-card/30 backdrop-blur-sm text-foreground transition-all duration-300 hover:bg-card hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5"
-              >
-                Compare Tools
-              </Link>
+
+            {/* Right — flipping board */}
+            <div className="w-full lg:w-[420px] shrink-0 animate-fade-in-up animate-delay-200">
+              <TextFlippingBoardDemo />
             </div>
+
           </div>
 
           {/* Stats */}
@@ -140,7 +159,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featuredTools.slice(0, 6).map((tool, index) => (
+            {featuredTools.slice(0, 3).map((tool, index) => (
               <div 
                 key={tool.id} 
                 className="animate-fade-in-up" 

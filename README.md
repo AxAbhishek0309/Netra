@@ -2,8 +2,6 @@
 
 A modern directory to discover, compare, and stay updated on the best AI tools available. Built with Next.js 16, Tailwind CSS v4, and a premium black + gold design system.
 
-![AIStack](public/placeholder.svg)
-
 ## Features
 
 - **Browse Tools** — Explore 12+ curated AI tools across NLP, Image, and Productivity categories

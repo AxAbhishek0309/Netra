@@ -27,10 +27,7 @@ const values = [
 ]
 
 const team = [
-  { name: "Alex Chen", role: "Founder & CEO", initial: "A" },
-  { name: "Sarah Kim", role: "Head of Research", initial: "S" },
-  { name: "Marcus Johnson", role: "Lead Engineer", initial: "M" },
-  { name: "Emily Wang", role: "Product Designer", initial: "E" },
+  { name: "Abhishek Tiwari", role: "Founder & CEO", initial: "A" },
 ]
 
 const stats = [
@@ -183,19 +180,22 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              {team.map((member, index) => (
-                <div 
-                  key={index} 
-                  className="group text-center p-6 rounded-2xl border border-border/30 bg-card/20 transition-all duration-500 hover:border-primary/25 hover:bg-card/40 hover-lift"
-                >
-                  <div className="relative w-20 h-20 rounded-2xl bg-gold-gradient flex items-center justify-center mx-auto mb-5 group-hover:scale-105 transition-transform duration-300 shadow-lg shadow-primary/20">
-                    <span className="text-2xl font-black text-primary-foreground">{member.initial}</span>
+            <div className="flex justify-center">
+              <div className="group relative p-8 rounded-2xl border border-primary/20 bg-card/20 glass-card gold-glow transition-all duration-500 hover:border-primary/35 hover-lift flex flex-col justify-between w-full max-w-md">
+                <div className="absolute -top-px left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                    <Sparkles className="w-5 h-5 text-primary" />
                   </div>
-                  <h3 className="font-bold text-foreground">{member.name}</h3>
-                  <p className="text-sm text-muted-foreground mt-1">{member.role}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed italic mb-5">
+                    &ldquo;AIStack was built out of frustration — I spent hours comparing AI tools scattered across the web. I wanted one place that just works. That&apos;s what we built.&rdquo;
+                  </p>
                 </div>
-              ))}
+                <div className="pt-4 border-t border-border/20">
+                  <p className="text-sm font-bold text-foreground">Abhishek Tiwari</p>
+                  <p className="text-xs text-primary mt-0.5">Founder & CEO, AIStack</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>

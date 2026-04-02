@@ -66,7 +66,15 @@ export function Navbar() {
           </div>
 
           {/* CTA Button */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-3">
+            <a
+              href="http://netra-api.infinityfree.me/netra-api/index.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold rounded-full border border-primary/30 text-primary hover:bg-primary/10 transition-all duration-300"
+            >
+              Submit a Tool
+            </a>
             <Link
               href="/tools"
               className="group inline-flex items-center gap-2 px-6 py-2.5 text-sm font-semibold rounded-full bg-gold-gradient text-primary-foreground btn-gold"

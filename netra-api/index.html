@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html ng-app="netraApp">
+<head>
+  <meta charset="UTF-8" />
+  <title>Netra — Submit a Tool</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #0B0B0B; color: #fff; min-height: 100vh; padding: 40px 20px; }
+    .container { max-width: 600px; margin: 0 auto; }
+    .logo { font-size: 24px; font-weight: 900; background: linear-gradient(135deg, #FFD700, #FFA500, #C9A227); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+    .subtitle { color: #666; font-size: 14px; margin-bottom: 40px; }
+    h1 { font-size: 32px; font-weight: 900; margin-bottom: 8px; }
+    .card { background: linear-gradient(135deg, rgba(20,18,15,0.85), rgba(12,12,12,0.9)); border: 1px solid rgba(255,215,0,0.12); border-radius: 16px; padding: 32px; margin-bottom: 24px; }
+    .card h2 { font-size: 18px; font-weight: 700; margin-bottom: 24px; color: #FFD700; }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; font-size: 13px; font-weight: 600; color: #999; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+    input, select, textarea { width: 100%; padding: 12px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; color: #fff; font-size: 14px; outline: none; transition: border-color 0.3s; }
+    input:focus, select:focus, textarea:focus { border-color: rgba(255,215,0,0.5); }
+    select option { background: #1a1a1a; }
+    textarea { resize: vertical; min-height: 100px; }
+    .error { color: #ff6b6b; font-size: 12px; margin-top: 4px; }
+    .btn { width: 100%; padding: 14px; background: linear-gradient(135deg, #FFD700, #E5A800, #C9A227); border: none; border-radius: 10px; color: #0B0B0B; font-size: 15px; font-weight: 700; cursor: pointer; transition: transform 0.2s, box-shadow 0.3s; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,215,0,0.25); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .alert { padding: 14px 16px; border-radius: 10px; font-size: 14px; margin-bottom: 20px; font-weight: 500; }
+    .alert-success { background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: #4ade80; }
+    .alert-error { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); color: #f87171; }
+    .submissions-list { margin-top: 12px; }
+    .submission-item { padding: 16px; border: 1px solid rgba(255,215,0,0.1); border-radius: 10px; margin-bottom: 12px; background: rgba(255,255,255,0.02); }
+    .submission-item h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .submission-item p { font-size: 13px; color: #666; margin-bottom: 4px; }
+    .badge { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.2); color: #FFD700; text-transform: uppercase; }
+    .tabs { display: flex; gap: 8px; margin-bottom: 32px; }
+    .tab { padding: 10px 24px; border-radius: 999px; font-size: 14px; font-weight: 600; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); background: transparent; color: #666; transition: all 0.3s; }
+    .tab.active { background: linear-gradient(135deg, #FFD700, #E5A800); color: #0B0B0B; border-color: transparent; }
+    .empty { text-align: center; color: #444; padding: 40px; font-size: 14px; }
+  </style>
+</head>
+<body ng-controller="NetraController">
+  <div class="container">
+
+    <div class="logo">✦ Netra</div>
+    <p class="subtitle">AI Tools & Pricing Explorer</p>
+    <h1>Community Portal</h1>
+    <p style="color:#666; margin-bottom:32px; font-size:15px;">Submit AI tools or subscribe for updates.</p>
+
+    <div class="tabs">
+      <button class="tab" ng-class="{active: activeTab === 'submit'}" ng-click="activeTab='submit'">Submit a Tool</button>
+      <button class="tab" ng-class="{active: activeTab === 'newsletter'}" ng-click="activeTab='newsletter'">Newsletter</button>
+      <button class="tab" ng-class="{active: activeTab === 'submissions'}" ng-click="activeTab='submissions'; loadSubmissions()">View Submissions</button>
+    </div>
+
+    <div class="alert alert-success" ng-if="successMsg">{{ successMsg }}</div>
+    <div class="alert alert-error" ng-if="errorMsg">{{ errorMsg }}</div>
+
+    <!-- Submit Tool Tab -->
+    <div ng-if="activeTab === 'submit'">
+      <div class="card">
+        <h2>Submit an AI Tool</h2>
+        <form name="toolForm" ng-submit="submitTool()" novalidate>
+          <div class="form-group">
+            <label>Tool Name *</label>
+            <input type="text" ng-model="tool.name" placeholder="e.g. ChatGPT" required />
+            <div class="error" ng-if="toolForm.$submitted && !tool.name">Name is required</div>
+          </div>
+          <div class="form-group">
+            <label>Category *</label>
+            <select ng-model="tool.category" required>
+              <option value="">Select a category</option>
+              <option value="NLP">NLP</option>
+              <option value="Image">Image</option>
+              <option value="Productivity">Productivity</option>
+              <option value="Code">Code</option>
+              <option value="Audio">Audio</option>
+              <option value="Video">Video</option>
+              <option value="Other">Other</option>
+            </select>
+            <div class="error" ng-if="toolForm.$submitted && !tool.category">Category is required</div>
+          </div>
+          <div class="form-group">
+            <label>Website *</label>
+            <input type="url" ng-model="tool.website" placeholder="https://example.com" required />
+            <div class="error" ng-if="toolForm.$submitted && !tool.website">Website is required</div>
+          </div>
+          <div class="form-group">
+            <label>Description *</label>
+            <textarea ng-model="tool.description" placeholder="What does this tool do?" required></textarea>
+            <div class="error" ng-if="toolForm.$submitted && !tool.description">Description is required</div>
+          </div>
+          <button type="submit" class="btn" ng-disabled="loading">{{ loading ? 'Submitting...' : 'Submit Tool' }}</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Newsletter Tab -->
+    <div ng-if="activeTab === 'newsletter'">
+      <div class="card">
+        <h2>Stay Updated</h2>
+        <form name="newsForm" ng-submit="subscribeNewsletter()" novalidate>
+          <div class="form-group">
+            <label>Email Address *</label>
+            <input type="email" ng-model="newsletter.email" placeholder="you@example.com" required />
+            <div class="error" ng-if="newsForm.$submitted && !newsletter.email">Email is required</div>
+          </div>
+          <button type="submit" class="btn" ng-disabled="loading">{{ loading ? 'Subscribing...' : 'Subscribe' }}</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Submissions Tab -->
+    <div ng-if="activeTab === 'submissions'">
+      <div class="card">
+        <h2>Submitted Tools ({{ submissions.length }})</h2>
+        <div class="empty" ng-if="submissions.length === 0">No submissions yet.</div>
+        <div class="submissions-list">
+          <div class="submission-item" ng-repeat="s in submissions">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <h3>{{ s.name }}</h3>
+              <span class="badge">{{ s.category }}</span>
+            </div>
+            <p>{{ s.description }}</p>
+            <a ng-href="{{ s.website }}" target="_blank" style="color:#FFD700; font-size:13px;">{{ s.website }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    var BASE = 'http://netra-api.infinityfree.me/netra-api';
+
+    angular.module('netraApp', [])
+      .controller('NetraController', function($scope, $http) {
+
+        $scope.activeTab = 'submit';
+        $scope.tool = {};
+        $scope.newsletter = {};
+        $scope.submissions = [];
+        $scope.loading = false;
+        $scope.successMsg = '';
+        $scope.errorMsg = '';
+
+        function clearMessages() {
+          $scope.successMsg = '';
+          $scope.errorMsg = '';
+        }
+
+        $scope.submitTool = function() {
+          clearMessages();
+          if (!$scope.tool.name || !$scope.tool.category || !$scope.tool.website || !$scope.tool.description) return;
+          $scope.loading = true;
+          $http.post(BASE + '/submit-tool.php', $scope.tool)
+            .then(function(res) {
+              if (res.data.success) { $scope.successMsg = res.data.message; $scope.tool = {}; }
+              else { $scope.errorMsg = res.data.message; }
+            })
+            .catch(function() { $scope.errorMsg = 'Something went wrong. Try again.'; })
+            .finally(function() { $scope.loading = false; });
+        };
+
+        $scope.subscribeNewsletter = function() {
+          clearMessages();
+          if (!$scope.newsletter.email) return;
+          $scope.loading = true;
+          $http.post(BASE + '/newslet.php', $scope.newsletter)
+            .then(function(res) {
+              if (res.data.success) { $scope.successMsg = res.data.message; $scope.newsletter = {}; }
+              else { $scope.errorMsg = res.data.message; }
+            })
+            .catch(function() { $scope.errorMsg = 'Something went wrong. Try again.'; })
+            .finally(function() { $scope.loading = false; });
+        };
+
+        $scope.loadSubmissions = function() {
+          $http.get(BASE + '/get-submissions.php')
+            .then(function(res) { $scope.submissions = res.data; });
+        };
+      });
+  </script>
+</body>
+</html>

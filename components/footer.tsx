@@ -6,6 +6,7 @@ const footerLinks = {
     { href: "/tools", label: "Browse Tools" },
     { href: "/compare", label: "Compare Tools" },
     { href: "/about", label: "About Us" },
+    { href: "http://netra-api.infinityfree.me/netra-api/index.html", label: "Submit a Tool" },
   ],
   categories: [
     { href: "/tools?category=nlp", label: "NLP Tools" },
